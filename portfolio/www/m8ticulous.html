@@ -8,7 +8,11 @@
 <meta property="og:title" content="Hardik Gadesha — ERPNext &amp; Frappe Consultant | m8ticulous Solutions">
 <meta property="og:description" content="9+ years, 50+ clients, 120+ ERPNext &amp; Frappe projects delivered — implementation, custom development, migration, and solution architecture.">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="og-image.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -353,6 +357,14 @@
   .finder-result h3{font-size:22px;font-weight:700;margin-bottom:10px;}
   .finder-result p{font-size:14.5px;color:rgba(255,255,255,0.82);line-height:1.65;max-width:560px;margin-bottom:20px;}
   .finder-result .btn-primary{display:inline-flex;}
+
+  /* Engagement models */
+  .engagement{background:var(--paper);}
+  .engagement-grid{grid-template-columns:repeat(3,1fr);}
+  .engagement-note{
+    margin-top:24px;font-size:13px;color:var(--slate);
+    border-left:2px solid var(--gold);padding-left:12px;
+  }
 
   /* Process */
   .process-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative;}
@@ -710,6 +722,40 @@
           <p>Training, handover, and ongoing support so the system keeps working long after go-live.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="engagement">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Engagement Models</div>
+        <h2>How engagements are structured.</h2>
+        <p>Scope determines the model — agreed upfront, before any work starts.</p>
+      </div>
+      <div class="service-grid engagement-grid">
+        <div class="service-card reveal" data-tilt>
+          <div class="icon-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h3>Fixed-Price Implementation</h3>
+          <p>For well-defined ERPNext setups — data migration, configuration, and rollout scoped clearly during discovery, priced as a single deliverable.</p>
+        </div>
+        <div class="service-card reveal" data-tilt>
+          <div class="icon-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>
+          </div>
+          <h3>Time &amp; Materials</h3>
+          <p>For ongoing custom development, evolving requirements, and post-go-live support — billed against actual work as the engagement progresses.</p>
+        </div>
+        <div class="service-card reveal" data-tilt>
+          <div class="icon-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          </div>
+          <h3>Architecture Retainer</h3>
+          <p>For Solution Architecture engagements — a scoped blueprint deliverable, typically fixed-fee, with the option to continue into the build phase.</p>
+        </div>
+      </div>
+      <div class="engagement-note">Exact terms depend on scope and are confirmed after the discovery call — see the FAQ below for more on how this works.</div>
     </div>
   </section>
 
