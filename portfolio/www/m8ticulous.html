@@ -23,7 +23,7 @@
       "alternateName": "m8ticulous",
       "description": "ERPNext & Frappe techno-functional consulting, implementation, custom development, and solution architecture, led by Hardik Gadesha.",
       "telephone": "+91-9106081213",
-      "email": "Hardikgadesha@gmail.com",
+      "email": "hardikgadesha@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Ahmedabad",
@@ -35,7 +35,7 @@
         "@type": "Person",
         "name": "Hardik Gadesha",
         "jobTitle": "ERPNext & Frappe Techno-Functional Consultant | Solution Architect",
-        "email": "Hardikgadesha@gmail.com",
+        "email": "hardikgadesha@gmail.com",
         "telephone": "+91-9106081213",
         "sameAs": ["https://www.linkedin.com/in/hardik-gadesha-39a938136/"]
       },
@@ -62,7 +62,7 @@
         {
           "@type": "Question",
           "name": "Can you work alongside our in-house team?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, this is common — especially for Solution Architecture engagements, where I hand off a technical blueprint for your team (or another vendor) to build against, or work directly alongside them." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, this is common — especially for Solution Architecture engagements, where we hand off a technical blueprint for your team (or another vendor) to build against, or work directly alongside them." }
         },
         {
           "@type": "Question",
@@ -77,7 +77,7 @@
         {
           "@type": "Question",
           "name": "What happens after go-live?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Training, handover, and ongoing support so the system keeps working after I'm not in the room — the specifics get scoped as part of the engagement, not left vague until the end." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Training, handover, and ongoing support so the system keeps working after we're not in the room — the specifics get scoped as part of the engagement, not left vague until the end." }
         }
       ]
     }
@@ -197,6 +197,12 @@
     mask-image:radial-gradient(ellipse 70% 60% at 60% 20%, #000 40%, transparent 85%);
   }
   .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:0.5;pointer-events:none;z-index:0;}
+  .cursor-glow{
+    position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(139,95,203,0.16), transparent 65%);
+    transition:opacity .4s ease;
+  }
+  .cursor-glow.active{opacity:1;}
   .blob-1{width:480px;height:480px;background:var(--purple-tint-2);top:-160px;right:-120px;animation:bob1 16s ease-in-out infinite alternate;}
   .blob-2{width:360px;height:360px;background:var(--purple-tint);top:300px;left:-160px;animation:bob2 18s ease-in-out infinite alternate;}
   @keyframes bob1{from{transform:translate(0,0);}to{transform:translate(-30px,40px);}}
@@ -282,6 +288,12 @@
   .float-card:hover{transform:translateY(-6px) !important;box-shadow:0 20px 44px rgba(74,38,128,0.16);}
   .float-card .num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--purple);}
   .float-card .lbl{font-size:12.5px;color:var(--slate);margin-top:2px;}
+  .fc-detail{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--gold);
+    max-height:0;opacity:0;overflow:hidden;
+    transition:max-height .35s cubic-bezier(.16,.8,.3,1), opacity .3s ease, margin-top .35s ease;
+  }
+  .float-card:hover .fc-detail{max-height:30px;opacity:1;margin-top:8px;}
   .fc-1{top:0;left:0;width:190px;animation-delay:0s;}
   .fc-2{top:175px;right:0;width:210px;animation-delay:.6s;}
   .fc-3{top:350px;left:60px;width:220px;animation-delay:1.2s;}
@@ -477,6 +489,40 @@
   }
   .contact-cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(201,154,52,0.4);}
 
+  /* Inquiry form */
+  .contact-divider{height:1px;background:rgba(255,255,255,0.12);margin:36px 0 30px;position:relative;z-index:1;}
+  .inquiry-form{position:relative;z-index:1;max-width:640px;}
+  .form-row-title{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:18px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .form-field label{
+    display:block;font-size:12.5px;color:rgba(255,255,255,0.65);margin-bottom:7px;font-weight:500;
+  }
+  .form-field label .optional{color:rgba(255,255,255,0.4);font-weight:400;}
+  .form-field input, .form-field textarea{
+    width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);
+    border-radius:8px;padding:11px 14px;color:#fff;font-family:'IBM Plex Sans',sans-serif;font-size:14px;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .form-field input::placeholder, .form-field textarea::placeholder{color:rgba(255,255,255,0.35);}
+  .form-field input:focus, .form-field textarea:focus{
+    outline:none;border-color:var(--gold-bright);background:rgba(255,255,255,0.1);
+  }
+  .form-field textarea{resize:vertical;min-height:90px;font-family:inherit;}
+  .form-field-full{margin-bottom:18px;}
+  .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .inquiry-submit-btn{border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;display:inline-flex;align-items:center;gap:8px;}
+  .inquiry-submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none !important;}
+  .inquiry-submit-btn .btn-spinner{
+    display:none;width:14px;height:14px;border:2px solid rgba(27,23,48,0.3);border-top-color:var(--ink);
+    border-radius:50%;animation:spin .7s linear infinite;
+  }
+  .inquiry-submit-btn.loading .btn-label{display:none;}
+  .inquiry-submit-btn.loading .btn-spinner{display:inline-block;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .form-status{margin-top:14px;font-size:13.5px;min-height:20px;}
+  .form-status.success{color:var(--gold-bright);}
+  .form-status.error{color:#F29B9B;}
+
   footer{padding:30px 0 50px;}
   .foot-line{
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
@@ -512,6 +558,7 @@
     .service-grid{grid-template-columns:1fr;}
     .finder-grid{grid-template-columns:1fr;}
     .contact-cols{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
     .contact-box{padding:36px 24px;}
     section{padding:64px 0;}
     .back-to-top{width:42px;height:42px;bottom:18px;right:18px;}
@@ -555,7 +602,7 @@
         <a class="nav-icon-link" href="https://www.linkedin.com/in/hardik-gadesha-39a938136/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.15 1.45-2.15 2.94v5.66H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
         </a>
-        <a class="nav-cta" href="mailto:Hardikgadesha@gmail.com">Get in touch</a>
+        <a class="nav-cta" href="mailto:hardikgadesha@gmail.com">Get in touch</a>
         <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMobilePanel">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
@@ -566,7 +613,7 @@
       <a href="#services">Services</a>
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
-      <a href="mailto:Hardikgadesha@gmail.com">Get in touch</a>
+      <a href="mailto:hardikgadesha@gmail.com">Get in touch</a>
       <a href="https://www.linkedin.com/in/hardik-gadesha-39a938136/" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a href="/login">Login →</a>
     </div>
@@ -575,16 +622,15 @@
   <header class="hero" id="home">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
+    <div class="cursor-glow" id="heroGlow"></div>
     <div class="wrap">
       <div class="hero-grid">
         <div>
           <div class="eyebrow-pill"><span class="dot"></span> Open to new engagements</div>
           <h1 class="display">Precision-built <span class="accent">ERPNext</span> systems for growing businesses.</h1>
-          <p class="lead">I'm Hardik Gadesha, a techno-functional ERPNext &amp; Frappe consultant — 9+ years turning business processes into working systems for 50+ clients across India, the Middle East, Europe, and Asia. Trading as <strong>m8ticulous Solutions</strong>.</p>
+          <p class="lead">We're m8ticulous Solutions — techno-functional ERPNext &amp; Frappe consultants led by Hardik Gadesha, turning business processes into working systems for 50+ clients across India, the Middle East, Europe, and Asia.</p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="mailto:Hardikgadesha@gmail.com" data-magnetic>Email Hardik →</a>
-            <a class="btn btn-outline" href="tel:+919106081213">Call +91 91060 81213</a>
-            <a class="btn btn-outline" href="https://wa.me/919106081213" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn-primary" href="mailto:hardikgadesha@gmail.com" data-magnetic>Email</a>
           </div>
         </div>
         <div class="card-stack">
@@ -594,6 +640,7 @@
             </div>
             <div class="num display count" data-target="50" data-suffix="+">0</div>
             <div class="lbl">Clients partnered</div>
+            <div class="fc-detail">India · Middle East · Europe · Asia</div>
           </div>
           <div class="float-card fc-2">
             <div class="fc-icon">
@@ -601,6 +648,7 @@
             </div>
             <div class="num display count" data-target="120" data-suffix="+">0</div>
             <div class="lbl">Projects delivered</div>
+            <div class="fc-detail">ERPNext v6 through v16</div>
           </div>
           <div class="float-card fc-3">
             <div class="fc-icon">
@@ -608,6 +656,7 @@
             </div>
             <div class="num display count" data-target="1400" data-prefix="₹" data-suffix=" Cr+" data-comma="1">0</div>
             <div class="lbl">Handled annually — flagship platform</div>
+            <div class="fc-detail">M.P Enagarpalika 2.0 · 413 ULBs</div>
           </div>
         </div>
       </div>
@@ -627,7 +676,7 @@
   <section class="services" id="services">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">What I Do</div>
+        <div class="eyebrow">What We Do</div>
         <h2>Full-service ERPNext &amp; Frappe delivery, end to end.</h2>
       </div>
       <div class="service-grid">
@@ -667,7 +716,7 @@
     <div class="wrap reveal">
       <div class="section-head">
         <div class="eyebrow">Not Sure Where To Start?</div>
-        <h2>Tell me your situation, I'll tell you the fit.</h2>
+        <h2>Tell us your situation, we'll tell you the fit.</h2>
         <p>Pick the one that sounds most like you.</p>
       </div>
 
@@ -706,7 +755,7 @@
         <div class="finder-result-tag mono" id="finderResultTag">RECOMMENDED</div>
         <h3 class="display" id="finderResultTitle"></h3>
         <p id="finderResultBody"></p>
-        <a class="btn btn-primary" id="finderResultCta" href="#" data-magnetic>Email Hardik about this →</a>
+        <a class="btn btn-primary" id="finderResultCta" href="#" data-magnetic>Email about this →</a>
       </div>
     </div>
   </section>
@@ -721,7 +770,7 @@
         <div class="process-step">
           <div class="step-num">1</div>
           <h3 class="display">Discover</h3>
-          <p>I study your operations, challenges, and goals before opening a single config screen.</p>
+          <p>We study your operations, challenges, and goals before opening a single config screen.</p>
         </div>
         <div class="process-step">
           <div class="step-num">2</div>
@@ -790,7 +839,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           </div>
           <h3>Cross-industry expertise</h3>
-          <p>120+ projects across government, manufacturing, trading, pharma, and retail — patterns I bring into every new engagement.</p>
+          <p>120+ projects across government, manufacturing, trading, pharma, and retail — patterns we bring into every new engagement.</p>
         </div>
         <div class="why-card reveal" data-tilt>
           <div class="icon-circle">
@@ -856,7 +905,7 @@
             <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-a">
-            <p>Yes, this is common — especially for Solution Architecture engagements, where I hand off a technical blueprint for your team (or another vendor) to build against, or work directly alongside them.</p>
+            <p>Yes, this is common — especially for Solution Architecture engagements, where we hand off a technical blueprint for your team (or another vendor) to build against, or work directly alongside them.</p>
           </div>
         </div>
 
@@ -886,7 +935,7 @@
             <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-a">
-            <p>Training, handover, and ongoing support so the system keeps working after I'm not in the room — the specifics get scoped as part of the engagement, not left vague until the end.</p>
+            <p>Training, handover, and ongoing support so the system keeps working after we're not in the room — the specifics get scoped as part of the engagement, not left vague until the end.</p>
           </div>
         </div>
       </div>
@@ -895,9 +944,10 @@
 
   <section class="contact" id="contact">
     <div class="wrap reveal">
-      <div class="contact-box">
+      <div class="contact-box" id="contactBox">
+        <div class="cursor-glow" id="contactGlow"></div>
         <h2 class="display">Got a project in mind? Let's talk.</h2>
-        <p>120+ projects in, I still start with your process before touching a config screen. Available for ERPNext implementations, Frappe development, migrations, and architecture consulting — remote or onsite.</p>
+        <p>120+ projects in, we still start with your process before touching a config screen. Available for ERPNext implementations, Frappe development, migrations, and architecture consulting — remote or onsite.</p>
         <div class="contact-cols">
           <div class="contact-col">
             <div class="k mono">Location</div>
@@ -909,14 +959,51 @@
           </div>
           <div class="contact-col">
             <div class="k mono">Email</div>
-            <div class="v"><a href="mailto:Hardikgadesha@gmail.com">Hardikgadesha@gmail.com</a></div>
+            <div class="v"><a href="mailto:hardikgadesha@gmail.com">hardikgadesha@gmail.com</a></div>
           </div>
           <div class="contact-col">
             <div class="k mono">Connect</div>
             <div class="v"><a href="https://www.linkedin.com/in/hardik-gadesha-39a938136/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
           </div>
         </div>
-        <a class="contact-cta-btn" href="mailto:Hardikgadesha@gmail.com" data-magnetic>Email Hardik →</a>
+
+        <div class="contact-divider"></div>
+
+        <form class="inquiry-form" id="inquiryForm">
+          <div class="form-row-title mono">Or send a query directly</div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="inqName">Name</label>
+              <input type="text" id="inqName" name="lead_name" required autocomplete="name">
+            </div>
+            <div class="form-field">
+              <label for="inqEmail">Email</label>
+              <input type="email" id="inqEmail" name="email_id" required autocomplete="email">
+            </div>
+            <div class="form-field">
+              <label for="inqPhone">Phone <span class="optional">(optional)</span></label>
+              <input type="tel" id="inqPhone" name="mobile_no" autocomplete="tel">
+            </div>
+            <div class="form-field">
+              <label for="inqCompany">Company <span class="optional">(optional)</span></label>
+              <input type="text" id="inqCompany" name="company_name" autocomplete="organization">
+            </div>
+          </div>
+          <div class="form-field form-field-full">
+            <label for="inqMessage">What are you looking to build?</label>
+            <textarea id="inqMessage" name="message" rows="4" required></textarea>
+          </div>
+          <!-- honeypot field — hidden from real visitors, bots tend to fill every input -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="inqWebsite">Website</label>
+            <input type="text" id="inqWebsite" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" class="contact-cta-btn inquiry-submit-btn" id="inquirySubmitBtn">
+            <span class="btn-label">Submit Inquiry →</span>
+            <span class="btn-spinner"></span>
+          </button>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
       </div>
     </div>
     <footer>
@@ -1060,6 +1147,69 @@
         });
       }
 
+      // Inquiry form — submits to a custom Frappe whitelisted endpoint,
+      // which creates a Lead. See the accompanying server-side setup guide.
+      var inquiryForm = document.getElementById('inquiryForm');
+      if(inquiryForm){
+        var submitBtn = document.getElementById('inquirySubmitBtn');
+        var formStatus = document.getElementById('formStatus');
+
+        inquiryForm.addEventListener('submit', function(e){
+          e.preventDefault();
+
+          // Honeypot check — if this hidden field has a value, silently drop it
+          var honeypot = document.getElementById('inqWebsite');
+          if(honeypot && honeypot.value){
+            formStatus.textContent = 'Thanks — we\'ll be in touch shortly.';
+            formStatus.className = 'form-status success';
+            inquiryForm.reset();
+            return;
+          }
+
+          var payload = {
+            lead_name: document.getElementById('inqName').value.trim(),
+            email_id: document.getElementById('inqEmail').value.trim(),
+            mobile_no: document.getElementById('inqPhone').value.trim(),
+            company_name: document.getElementById('inqCompany').value.trim(),
+            message: document.getElementById('inqMessage').value.trim()
+          };
+
+          if(!payload.lead_name || !payload.email_id || !payload.message){
+            formStatus.textContent = 'Please fill in name, email, and your query.';
+            formStatus.className = 'form-status error';
+            return;
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.classList.add('loading');
+          formStatus.textContent = '';
+          formStatus.className = 'form-status';
+
+          fetch('/api/method/portfolio.api.submit_lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          })
+            .then(function(res){
+              if(!res.ok) throw new Error('Request failed');
+              return res.json();
+            })
+            .then(function(){
+              formStatus.textContent = 'Thanks — your query has been received. We\'ll be in touch shortly.';
+              formStatus.className = 'form-status success';
+              inquiryForm.reset();
+            })
+            .catch(function(){
+              formStatus.textContent = 'Something went wrong — please email hardikgadesha@gmail.com directly instead.';
+              formStatus.className = 'form-status error';
+            })
+            .finally(function(){
+              submitBtn.disabled = false;
+              submitBtn.classList.remove('loading');
+            });
+        });
+      }
+
       // Back to top button
       var backToTop = document.getElementById('backToTop');
       if(backToTop){
@@ -1112,7 +1262,7 @@
             if(!data) return;
             finderResultTitle.textContent = data.title;
             finderResultBody.textContent = data.body;
-            finderResultCta.href = 'mailto:Hardikgadesha@gmail.com?subject=' + encodeURIComponent(data.subject + ' \u2014 enquiry');
+            finderResultCta.href = 'mailto:hardikgadesha@gmail.com?subject=' + encodeURIComponent(data.subject + ' \u2014 enquiry');
             finderResult.classList.add('visible');
             if(window.innerWidth < 760){
               finderResult.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
@@ -1174,6 +1324,28 @@
         heroEl.addEventListener('mouseleave', function(){
           blob1.style.transform = 'translate(0,0)';
           blob2.style.transform = 'translate(0,0)';
+        });
+      }
+
+      // Cursor spotlight glow (dark sections only, desktop, fine pointer only)
+      if(canTilt){
+        var glowTargets = [
+          { container: document.getElementById('home'), glow: document.getElementById('heroGlow') },
+          { container: document.getElementById('contactBox'), glow: document.getElementById('contactGlow') }
+        ];
+        glowTargets.forEach(function(pair){
+          if(!pair.container || !pair.glow) return;
+          pair.container.addEventListener('mousemove', function(e){
+            var r = pair.container.getBoundingClientRect();
+            var xPct = ((e.clientX - r.left) / r.width) * 100;
+            var yPct = ((e.clientY - r.top) / r.height) * 100;
+            pair.glow.style.setProperty('--mx', xPct + '%');
+            pair.glow.style.setProperty('--my', yPct + '%');
+            pair.glow.classList.add('active');
+          });
+          pair.container.addEventListener('mouseleave', function(){
+            pair.glow.classList.remove('active');
+          });
         });
       }
     })();
